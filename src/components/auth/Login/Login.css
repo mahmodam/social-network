@@ -1,0 +1,19 @@
+.btn-primary {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.form-control-invalid {
+  margin: 1rem 0;
+  text-align: center;
+  color: red;
+  border-color: red;
+  background: #ffd1d1;
+}
+
+.form-control {
+  display: block;
+  margin: 1rem 0;
+
+  margin-bottom: 0.5rem;
+}
