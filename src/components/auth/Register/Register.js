@@ -4,6 +4,9 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //import axios from "axios";
 
+import { connect } from "react-redux";
+import { setAlert } from "../../../actions/alert";
+
 import "./Register.css";
 
 const validationSchema = Yup.object().shape({
@@ -22,7 +25,7 @@ const validationSchema = Yup.object().shape({
     .required("Required"),
 });
 
-function Register() {
+function Register(props) {
   const handleSubmit = async (values) => {
     //values.preventDefault();
     const formData = new FormData();
@@ -32,7 +35,7 @@ function Register() {
     formData.append("password2", values.password2);
 
     if (formData.get("password") !== formData.get("password2")) {
-      console.log("Passwords do not match");
+      props.setAlert("Passwords do not match", "danger");
     } else {
       //   const newUser = {
       //     name: formData.get("name"),
@@ -195,4 +198,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default connect(null, { setAlert })(Register);
