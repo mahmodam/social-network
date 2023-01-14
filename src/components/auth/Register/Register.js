@@ -169,8 +169,9 @@ function Register(props) {
   );
 }
 
+// אם משתמש מחובר
+// יש להעביר אותו ב connect לדף הבית
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
-
 export default connect(mapStateToProps, { setAlert, register })(Register);
