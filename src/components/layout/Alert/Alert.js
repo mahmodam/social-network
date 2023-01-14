@@ -10,15 +10,8 @@ const Alert = ({ alerts }) =>
     </div>
   ));
 
-// Alert.defaultProps = {
-//     alerts: []
-
-// }
-
 const mapStateToProps = (state) => ({
   alerts: state.alert,
 });
-
-//const mapDispatchToProps = {};
 
 export default connect(mapStateToProps)(Alert);

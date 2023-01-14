@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //import axios from "axios";
 
 import { connect } from "react-redux";
 import { setAlert } from "../../../actions/alert";
+import { register } from "../../../actions/auth";
 
 import "./Register.css";
 
@@ -58,9 +59,18 @@ function Register(props) {
       //     console.error(err.response.data);
       //   }
 
-      console.log("Success");
+      props.register({
+        name: formData.get("name"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+      });
     }
   };
+
+  // Redirect if logged in
+  if (props.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <>
@@ -155,47 +165,12 @@ function Register(props) {
           </Form>
         )}
       </Formik>
-
-      {/* <section className="container">
-        <h1 className="large text-primary">Sign Up</h1>
-        <p className="lead">
-          <i className="fas fa-user"></i> Create Your Account
-        </p>
-        <form className="form" action="create-profile.html">
-          <div className="form-group">
-            <input type="text" placeholder="Name" name="name"  required />
-          </div>
-          <div className="form-group">
-            <input type="email" placeholder="Email Address" name="email" />
-            <small className="form-text">
-              This site uses Gravatar so if you want a profile image, use a
-              Gravatar email
-            </small>
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              minLength="6"
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              name="password2"
-              minLength="6"
-            />
-          </div>
-          <input type="submit" className="btn btn-primary" value="Register" />
-        </form>
-        <p className="my-1">
-          Already have an account? <a href="login.html">Sign In</a>
-        </p>
-      </section> */}
     </>
   );
 }
 
-export default connect(null, { setAlert })(Register);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);

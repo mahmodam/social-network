@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //import axios from "axios";
+
+import { connect } from "react-redux";
+import { setAlert } from "../../../actions/alert";
+import { login } from "../../../actions/auth";
 
 import "./Login.css";
 
@@ -14,7 +18,7 @@ const validationSchema = Yup.object().shape({
     .required("Required"),
 });
 
-function Login() {
+function Login(props) {
   const handleSubmit = async (values) => {
     //values.preventDefault();
     const formData = new FormData();
@@ -43,8 +47,14 @@ function Login() {
     //     console.error(err.response.data);
     //   }
 
-    console.log("Success");
+    props.login(formData.get("email"), formData.get("password"));
   };
+
+  // Redirect if logged in
+  // אם משתמש מחובר ונכנס לדף ההתחברות יועבר לדף הבית
+  if (props.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <>
@@ -108,4 +118,10 @@ function Login() {
   );
 }
 
-export default Login;
+// אם משתמש מחובר
+// יש להעביר אותו ב connect לדף הבית
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, login })(Login);
