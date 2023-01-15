@@ -13,6 +13,9 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import "./App.css";
+import Dashboard from "./components/dashboard/Dashboard";
+import CreateProfile from "./components/profile-forms/CreateProfile/CreateProfile";
+import EditProfile from "./components/profile-forms/EditProfile/EditProfile";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -39,6 +42,15 @@ function App() {
               </Route>
               <Route exact path="/login">
                 <Login />
+              </Route>
+              <Route exact path="/dashboard">
+                <Dashboard />
+              </Route>
+              <Route exact path="/create-profile">
+                <CreateProfile />
+              </Route>
+              <Route exact path="/edit-profile">
+                <EditProfile />
               </Route>
             </Switch>
           </section>
