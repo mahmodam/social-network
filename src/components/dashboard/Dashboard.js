@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
+import { deleteAccount } from "../../actions/profile";
 import Spinner from "../layout/Spinner/Spinner";
 import DashboardActions from "./DashboardActions";
+import Experience from "./Experience";
+import Education from "./Education";
 
 function Dashboard(props) {
   useEffect(() => {
@@ -25,6 +28,17 @@ function Dashboard(props) {
           {props.profile.profile !== null ? (
             <>
               <DashboardActions />
+              <Experience experience={props.profile.profile.experience} />
+              <Education education={props.profile.profile.education} />
+
+              <div className="my-2">
+                <button
+                  className="btn btn-danger"
+                  onClick={() => props.deleteAccount()}
+                >
+                  <i className="fas fa-user-minus"></i> Delete My Account
+                </button>
+              </div>
             </>
           ) : (
             <>
@@ -45,4 +59,6 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+  Dashboard
+);

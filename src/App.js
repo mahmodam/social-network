@@ -16,6 +16,8 @@ import "./App.css";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/profile-forms/CreateProfile/CreateProfile";
 import EditProfile from "./components/profile-forms/EditProfile/EditProfile";
+import AddExperience from "./components/profile-forms/AddExperience/AddExperience";
+import AddEducation from "./components/profile-forms/AddEducation/AddEducation";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -51,6 +53,12 @@ function App() {
               </Route>
               <Route exact path="/edit-profile">
                 <EditProfile />
+              </Route>
+              <Route exact path="/add-experience">
+                <AddExperience />
+              </Route>
+              <Route exact path="/add-education">
+                <AddEducation />
               </Route>
             </Switch>
           </section>
