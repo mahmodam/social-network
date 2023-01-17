@@ -10,6 +10,7 @@ import ProfileTop from "./ProfileTop/ProfileTop";
 import ProfileAbout from "./ProfileAbout/ProfileAbout";
 import ProfileExperience from "../ProfileExperience/ProfileExperience";
 import ProfileEducation from "../ProfileEducation/ProfileEducation";
+import ProfileGithub from "../ProfileGithub/ProfileGithub";
 
 function Profile({
   getProfileById,
@@ -75,6 +76,10 @@ function Profile({
                 <h4>No education credentials</h4>
               )}
             </div>
+
+            {profile.githubusername && (
+              <ProfileGithub username={profile.githubusername} />
+            )}
           </div>
         </>
       )}
