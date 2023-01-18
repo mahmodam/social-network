@@ -203,6 +203,8 @@ function EditProfile(props) {
             <div className="form-group">
               <Field
                 as="textarea"
+                cols="30"
+                rows="5"
                 name="bio"
                 placeholder="A short bio of yourself"
               />

@@ -24,7 +24,7 @@ function Navbar(props) {
           <Link to="/profile-list">Developers</Link>
         </li>
         <li>
-          <Link to="/posts">Posts</Link>
+          <Link to="/post-list">Posts</Link>
         </li>
         <li>
           <Link to="/dashboard">

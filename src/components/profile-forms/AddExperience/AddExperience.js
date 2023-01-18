@@ -111,6 +111,8 @@ function AddExperience(props) {
             <div className="form-group">
               <Field
                 as="textarea"
+                cols="30"
+                rows="5"
                 placeholder="Job Description"
                 name="description"
               />

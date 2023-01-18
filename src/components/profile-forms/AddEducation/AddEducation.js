@@ -123,6 +123,8 @@ function AddEducation(props) {
             <div className="form-group">
               <Field
                 as="textarea"
+                cols="30"
+                rows="5"
                 placeholder="Program Description"
                 name="description"
               />
