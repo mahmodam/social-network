@@ -27,6 +27,8 @@ const validationSchema = Yup.object().shape({
 });
 
 function Register(props) {
+  //const fileRef = useRef(null);
+
   const handleSubmit = async (values) => {
     //values.preventDefault();
     const formData = new FormData();
@@ -34,35 +36,16 @@ function Register(props) {
     formData.append("email", values.email);
     formData.append("password", values.password);
     formData.append("password2", values.password2);
+    //formData.append("file", values.file);
 
     if (formData.get("password") !== formData.get("password2")) {
       props.setAlert("Passwords do not match", "danger");
     } else {
-      //   const newUser = {
-      //     name: formData.get("name"),
-      //     email: formData.get("email"),
-      //     password: formData.get("password"),
-      //   };
-
-      //   try {
-      //     const config = {
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //     };
-
-      //     const body = JSON.stringify(newUser);
-
-      //     const res = await axios.post("/api/users", body, config);
-      //     console.log(res.data);
-      //   } catch (err) {
-      //     console.error(err.response.data);
-      //   }
-
       props.register({
         name: formData.get("name"),
         email: formData.get("email"),
         password: formData.get("password"),
+        //file: formData.get("file"),
       });
     }
   };
@@ -78,28 +61,26 @@ function Register(props) {
       <p className="lead">
         <i className="fas fa-user"></i> Create Your Account
       </p>
+
       <Formik
         initialValues={{
           name: "",
           email: "",
           password: "",
           password2: "",
+          //file: null,
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ errors, touched }) => (
+        {({ values, setFieldValue }) => (
           <Form className="form">
             <div className="form-group">
               <Field
                 type="text"
                 placeholder="Name"
                 name="name"
-                className={
-                  errors.name && touched.name
-                    ? "form-control is-invalid"
-                    : "form-control"
-                }
+                className="form-control"
               />
               <ErrorMessage
                 component="div"
@@ -112,11 +93,7 @@ function Register(props) {
                 type="email"
                 placeholder="Email Address"
                 name="email"
-                className={
-                  errors.email && touched.email
-                    ? "form-control is-invalid"
-                    : "form-control"
-                }
+                className="form-control"
               />
               <ErrorMessage
                 component="div"
@@ -129,11 +106,7 @@ function Register(props) {
                 type="password"
                 placeholder="Password"
                 name="password"
-                className={
-                  errors.password && touched.password
-                    ? "form-control is-invalid"
-                    : "form-control"
-                }
+                className="form-control"
               />
               <ErrorMessage
                 component="div"
@@ -146,11 +119,7 @@ function Register(props) {
                 type="password"
                 placeholder="Confirm Password"
                 name="password2"
-                className={
-                  errors.password2 && touched.password2
-                    ? "form-control is-invalid"
-                    : "form-control"
-                }
+                className="form-control"
               />
               <ErrorMessage
                 component="div"
@@ -158,6 +127,7 @@ function Register(props) {
                 className="form-control-invalid"
               />
             </div>
+
             <input type="submit" className="btn btn-primary" value="Register" />
             <p className="my-1">
               Already have an account? <Link to="/login">Sign In</Link>

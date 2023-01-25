@@ -6,18 +6,13 @@ import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 
 import Spinner from "../../layout/Spinner/Spinner";
-import ProfileTop from "./ProfileTop/ProfileTop";
-import ProfileAbout from "./ProfileAbout/ProfileAbout";
+import ProfileTop from "../ProfileTop/ProfileTop";
+import ProfileAbout from "../ProfileAbout/ProfileAbout";
 import ProfileExperience from "../ProfileExperience/ProfileExperience";
 import ProfileEducation from "../ProfileEducation/ProfileEducation";
 import ProfileGithub from "../ProfileGithub/ProfileGithub";
 
-function Profile({
-  getProfileById,
-  profile: { profile, loading },
-  auth,
-  match,
-}) {
+function Profile({ getProfileById, profile: { profile, loading }, auth }) {
   const { id } = useParams();
   useEffect(() => {
     getProfileById(id);

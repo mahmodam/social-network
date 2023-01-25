@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 function ProfileItem(props) {
   return (
     <div className="profile bg-light">
-      <img className="round-img" src={props.profile.user.avatar} alt="" />
+      <img
+        className="round-img"
+        src={props.profile.image || props.profile.user.avatar}
+        alt=""
+      />
       <div>
         <h2>{props.profile.user.name}</h2>
         <p>

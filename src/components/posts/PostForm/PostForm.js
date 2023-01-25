@@ -6,7 +6,7 @@ import { addPost } from "../../../actions/post";
 
 const validationSchema = Yup.object().shape({
   text: Yup.string()
-    .min(10, "Too Short!")
+    .min(2, "Too Short!")
     .max(500, "Too Long!")
     .required("Required"),
 });

@@ -7,6 +7,10 @@ import Spinner from "../layout/Spinner/Spinner";
 import DashboardActions from "./DashboardActions";
 import Experience from "./Experience";
 import Education from "./Education";
+import Upload from "./Upload";
+import ImagesPreview from "../layout/PreviewImage/ImagesPreview";
+
+import "./Dashboard.css";
 
 function Dashboard({ getCurrentProfile, deleteAccount, auth, profile }) {
   useEffect(() => {
@@ -24,11 +28,18 @@ function Dashboard({ getCurrentProfile, deleteAccount, auth, profile }) {
             <i className="fas fa-user"></i> Welcome{" "}
             {auth.user && auth.user.name}
           </p>
+
           {profile.profile !== null ? (
             <>
               <DashboardActions />
+              <hr className="hr"></hr>
+
+              <Upload />
+
               <Experience experience={profile.profile.experience} />
               <Education education={profile.profile.education} />
+
+              <ImagesPreview />
 
               <div className="my-2">
                 <button

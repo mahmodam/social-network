@@ -1,0 +1,10 @@
+.hr {
+  border: 1px solid #e0e0e0;
+  margin: 0px 0px 20px 0px;
+  color: var(--primary-color);
+}
+
+.image {
+  width: 13rem;
+  height: 13rem;
+}
