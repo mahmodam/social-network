@@ -11,7 +11,7 @@ import {
 // Get images
 export const getImages = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/images");
+    const res = await axios.get(process.env.BASE_URL + "/api/images");
 
     dispatch({
       type: GET_IMAGES,
@@ -28,7 +28,9 @@ export const getImages = () => async (dispatch) => {
 // Get image by ID
 export const getImageById = (imageId) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/images/${imageId}`);
+    const res = await axios.get(
+      process.env.BASE_URL + `/api/images/${imageId}`
+    );
 
     dispatch({
       type: GET_IMAGE,
@@ -51,7 +53,11 @@ export const addImage = (formData, history) => async (dispatch) => {
       },
     };
 
-    const res = await axios.post("/api/users/upload", formData, config);
+    const res = await axios.post(
+      process.env.BASE_URL + "/api/users/upload",
+      formData,
+      config
+    );
 
     dispatch({
       type: ADD_IMAGE,
@@ -78,7 +84,7 @@ export const addImage = (formData, history) => async (dispatch) => {
 // Delete image
 export const deleteImage = (id) => async (dispatch) => {
   try {
-    await axios.delete(`/api/images/${id}`);
+    await axios.delete(process.env.BASE_URL + `/api/images/${id}`);
 
     dispatch({
       type: DELETE_IMAGE,
