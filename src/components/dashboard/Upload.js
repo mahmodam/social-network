@@ -18,11 +18,15 @@ function Upload(props) {
     const formData = new FormData();
     formData.append("image", values.image);
     try {
-      const res = await axios.post("/api/users/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await axios.post(
+        "https://social-networkapi.onrender.com/api/users/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log(res);
     } catch (err) {
       console.log(err);

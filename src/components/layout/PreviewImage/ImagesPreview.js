@@ -9,7 +9,9 @@ function ImagesPreview(props) {
 
   const loadImages = async () => {
     try {
-      const res = await axios.get("api/users/images");
+      const res = await axios.get(
+        "https://social-networkapi.onrender.com/api/users/images"
+      );
       setImageIds(res.data);
       console.log(res.data);
     } catch (err) {
@@ -19,7 +21,9 @@ function ImagesPreview(props) {
 
   const deleteImage = async (imageId) => {
     try {
-      await axios.delete(`/api/users/images/${imageId}`);
+      await axios.delete(
+        `https://social-networkapi.onrender.com/api/users/images/${imageId}`
+      );
       loadImages();
     } catch (err) {
       console.error(err);
