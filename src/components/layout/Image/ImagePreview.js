@@ -7,7 +7,7 @@ function ImagePreview() {
 
   const loadImage = async () => {
     try {
-      const res = await axios.get(process.env.BASE_URL + "api/users/images");
+      const res = await axios.get("api/users/images");
       setImageIds(res.data);
       console.log(res.data);
     } catch (err) {
